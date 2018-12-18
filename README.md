@@ -10,7 +10,7 @@ Analysis of agreements between governments
 Sequence model, implemented in AnaGo and NER by DeepMIPT both have lower accuracy for this type of documents.
 * Dictionary method with morphological analysis for finding ORGANIZATIONS and COUNTRIES 
 
-* Analyze texts with jupyter notebook:
+### Analyze texts with jupyter notebook:
 ```sh
 git clone https://github.com/alissiawells/Leviafunc.git
 $ cd Leviafunc
@@ -20,7 +20,7 @@ $ jupyter notebook
 ```
 then open in browser file 'Analysis.ipynb' 
 
-* Or use it as a module:
+### Or use it as a module:
 ```sh
 pip install leviafunc
 ```
