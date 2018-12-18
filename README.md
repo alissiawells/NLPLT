@@ -18,4 +18,7 @@ $ mkvirtualenv Leviafunc
 $ pip install -r requirements.txt
 $ jupyter notebook
 ```
-then open 'Analysis.ipynb' 
+then open in browser 'Analysis.ipynb' 
+
+
+![](https://github.com/alissiawells/Leviafunc/blob/master/Leviathan.jpg)
