@@ -10,14 +10,24 @@ Analysis of agreements between governments
 Sequence model, implemented in AnaGo and NER by DeepMIPT both have lower accuracy for this type of documents.
 * Dictionary method with morphological analysis for finding ORGANIZATIONS and COUNTRIES 
 
-use jupyter notebook (Analysis_of_testdoc.ipynb) or the module:
+* Analyze texts with jupyter notebook:
+```sh
+git clone https://github.com/alissiawells/Leviafunc.git
+$ cd Leviafunc
+$ mkvirtualenv Leviafunc
+$ pip install -r requirements.txt
+$ jupyter notebook
+```
+then open in browser file 'Analysis.ipynb' 
+
+* Or use it as a module:
 ```sh
 pip install leviafunc
 ```
 Usage:
 ```sh
-import leviafunc
-doc = leviafunc.analyse("document.txt") # .doc, .docx are also supported
+import leviafunc as lf
+doc = leviafunc.Document("doc.txt") # .doc, .docx are also supported
 doc.print_all() # output: all fields 
 doc.title() # or print them partly
 doc.organizations()
