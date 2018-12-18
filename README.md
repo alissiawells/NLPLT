@@ -18,25 +18,4 @@ $ mkvirtualenv Leviafunc
 $ pip install -r requirements.txt
 $ jupyter notebook
 ```
-then open in browser file 'Analysis.ipynb' 
-
-### Or use it as a module:
-```sh
-pip install leviafunc
-```
-Usage:
-```sh
-import leviafunc as lf
-doc = leviafunc.Document("doc.txt") # .doc, .docx are also supported
-doc.print_all() # output: all fields 
-doc.title() # or print them partly
-doc.organizations()
-doc.countries()
-doc.type()
-doc.area()
-doc.dates()
-doc.keywords()
-doc.keyphrases()
-```
-
-![](https://github.com/alissiawells/Leviafunc/blob/master/Leviathan.jpg)
+then open 'Analysis.ipynb' 
