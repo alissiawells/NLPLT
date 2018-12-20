@@ -1,0 +1,7 @@
+include corpus.txt MANIFEST.in
+include setup.py
+include RUstopwords.txt
+include countries.txt
+include organizations.txt
+include Analysis.ipynb
+include Leviathan.jpg
