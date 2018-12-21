@@ -1,7 +1,7 @@
 import leviafunc as lf
 
 # for the most of use cases it is enough to define only document
-#lev = lf.Leviafunc('testdoc.txt') # input type: str ; check if the file is in the same directory or define the path
+lev = lf.Leviafunc('testdoc.txt') # input type: str ; check if the file is in the same directory or define the path
 
 # all outputs in a file
 #lev = lf.Leviafunc(document, option="-f")
@@ -9,8 +9,6 @@ import leviafunc as lf
 
 # optional argument to fit model on another corpus
 #lev = lf.Leviafunc('input.txt', corp='yourcorpus.txt')
-
-#lev = lf.Leviafunc('testdoc.txt', '/home/user/Leviafunc/corpus.txt')
 
 print(lev.title()) # output type: str
 for org in lev.organizations_print(): # output type: list of str

@@ -22,17 +22,20 @@ $ git clone https://github.com/alissiawells/Leviafunc.git
 $ cd Leviafunc
 $ mkvirtualenv Leviafunc
 $ pip install -r requirements.txt
-$ python leviafunc.py input.txt [-f / output.txt] [-c corpus.txt]
+$ python leviafunc.py input.txt [-f / output.txt] [-c yourcorpus.txt]
 ```
-or run without [additional options] for console output with initial corpus
+run without [additional options] for console output with initial corpus ('corpus.txt')
 
-### or use jupyter notebook
+### tests:
+```sh
+python setup.py test
+```
+
+### for experiments, it is more conveient to use jupyter notebook
 ```sh
 $ jupyter notebook
 ```
-then open in browser 'Analysis.ipynb'
-
-**or use Docker**
+open on localhost 'Analysis.ipynb'
 
 
 ![](https://github.com/alissiawells/Leviafunc/blob/master/Leviathan.jpg)

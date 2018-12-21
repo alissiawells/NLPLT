@@ -8,7 +8,6 @@ from datetime import date
 from typing import List, Any
 
 import pymorphy2
-import gensim
 import nltk
 
 nltk.download('punkt')
@@ -29,7 +28,7 @@ class Leviafunc(object):
     countries = set(line.strip().lower() for line in open(os.path.abspath('files/countries.txt'), 'r'))
     organizations = set(line.strip().lower() for line in open(os.path.abspath('files/organizations.txt'), 'r'))
 
-    def __init__(self, document, corp=os.path.abspath('files/corpus.txt'), stopWords=stopWords, countries=countries, organizations=organizations, option="-c"):
+    def __init__(self, document, corp='corpus.txt', stopWords=stopWords, countries=countries, organizations=organizations, option="-c"):
         self.option = option
         self.stopWords = stopWords
         self.countries = countries
@@ -43,11 +42,10 @@ class Leviafunc(object):
     def getText(self, document):
         try:
             if document.endswith(".txt"):
-                with open(document, "r") as f:
+                with open(os.path.abspath('files/' + document), "r") as f:
                     return f.readlines()
             elif document.endswith(".docx"):
-                document.endswith(".docx")
-                doc = docx.Document(document)
+                doc = docx.Document(os.path.abspath('files/' + document))
                 fullText = []
                 for para in doc.paragraphs:
                     fullText.append(para.text)
@@ -157,7 +155,7 @@ class Leviafunc(object):
         topic = title.split(' ')[-2:]
         noun = m.parse(topic[1])[0]
         adj = m.parse(topic[0])[0].inflect({noun.tag.gender, 'sing', 'nomn'})
-        return adj[0][0].upper() + adj[0][1:].lower() + self.lemm(noun[0])
+        return adj[0][0].upper() + adj[0][1:].lower() + " " + self.lemm(noun[0])
 
     def get_dates(self):
         logging.info('Extracting dates')
@@ -201,23 +199,22 @@ class Leviafunc(object):
         if "" in self.get_dates():
             return "Не указана дата введения в действие"
         else:
-            return "Статус: Введен в действие (соотношение с др. нормативно-правовыми актами см. в справочнике о статусе и " \
-                   "порядке применения НПА)"
+            return "Статус: Введен в действие"
 
     def print_all(self):
         logging.info('Analyzing file')
-        res = ["Название документа:" + self.title(),
+        res = ["Название документа: " + self.title(),
                "Организации:"]
         res.extend(self.organizations_print())
         res.append("Страны:")
         res.extend(self.countries_print())
-        res.append("Вид документа:" + self.typeofdoc())
-        res.append("Направление:" + self.area())
-        res.append("Область:" + self.area())
+        res.append("Вид документа: " + self.typeofdoc())
+        res.append("Направление: " + self.area())
+        res.append("Область: " + self.area())
         dates = self.get_dates()
         if self.get_dates():
-            res.append("Дата заключения:" + str(dates[0]))
-            res.append("Дата вступления в силу:" + str(dates[1]))
+            res.append("Дата заключения: " + str(dates[0]))
+            res.append("Дата вступления в силу: " + str(dates[1]))
         res.append("Ключевые слова:")
         res.extend(self.keywords())
         res.append("Наиболее часто встречающиеся выражения (n-gramms):")
@@ -247,11 +244,11 @@ if __name__ == "__main__":
                 output = os.path.abspath('files', 'output.txt')
             else:
                 output = os.path.abspath('files/'+sys.argv[2])
-            lev = Leviafunc(os.path.abspath('files/'+sys.argv[1]), option="-f")
+            lev = Leviafunc(sys.argv[1], option="-f")
             lev.show_output("-f")
             break
         elif len(sys.argv) == 2:
-            lev = Leviafunc(os.path.abspath('files/'+sys.argv[1]))
+            lev = Leviafunc(sys.argv[1])
             lev.show_output("-c")
             break
         else:
@@ -259,4 +256,4 @@ if __name__ == "__main__":
             \nfor console output add '-f' to write output in 'output.txt' \
               \nor type name of file for output instead '-f' \
               \nif you want to fit model on your own corpus, add '-c corpus.txt' \
-              \nsupported formats of files: .txt, .docx")
+              \nadd all files in directory \"file\" \nsupported formats of files: .txt, .docx")
